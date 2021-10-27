@@ -2,7 +2,7 @@ package buildings;
 
 import java.util.Iterator;
 
-public interface Floor extends Cloneable{
+public interface Floor extends Cloneable, Iterable<Space> {
     int getSpacesNum();
     int getSumSquare();
     int getRoomsNum();
@@ -13,4 +13,5 @@ public interface Floor extends Cloneable{
     void removeSpace(int num);
     Space getBestSpace();
     Object clone();
+    Iterator<Space> iterator();
 }

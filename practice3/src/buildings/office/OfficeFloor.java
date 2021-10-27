@@ -7,6 +7,7 @@ import buildings.lists.ArrList;
 import buildings.lists.ArrListNode;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 public class OfficeFloor implements Floor, Serializable, Cloneable {
     private ArrList floor;
@@ -133,5 +134,26 @@ public class OfficeFloor implements Floor, Serializable, Cloneable {
         result = new OfficeFloor(tmp);
         
         return result;
+    }
+
+    public Iterator<Space> iterator(){
+        Iterator<Space> iterator = new Iterator<Space>() {
+
+            private int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                if (index < getSpacesNum()){
+                    return true;
+                }
+                else return false;
+            }
+
+            @Override
+            public Space next() {
+                return getSpace(index++);
+            }
+        };
+        return iterator;
     }
 }

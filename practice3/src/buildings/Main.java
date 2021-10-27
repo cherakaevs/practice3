@@ -5,6 +5,8 @@ import buildings.office.Office;
 import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
 
+import java.util.Iterator;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -85,6 +87,9 @@ public class Main {
         */
 
         System.out.println(testBuilding.toString());
+
+        Iterator<Floor> it = testBuilding.iterator();
+
 
     }
 }

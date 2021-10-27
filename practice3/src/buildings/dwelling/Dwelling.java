@@ -3,6 +3,7 @@ package buildings.dwelling;
 import buildings.*;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 public class Dwelling implements Building, Serializable, Cloneable {
     private Floor[] dwelling;
@@ -208,5 +209,25 @@ public class Dwelling implements Building, Serializable, Cloneable {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public Iterator<Floor> iterator(){
+        Iterator<Floor> iterator = new Iterator<Floor>() {
+
+            private int index = 0;
+            @Override
+            public boolean hasNext() {
+                if(index < getFloorsNum()){
+                    return true;
+                }
+                else return false;
+            }
+
+            @Override
+            public Floor next() {
+                return getFloor(index++);
+            }
+        };
+        return iterator;
     }
 }

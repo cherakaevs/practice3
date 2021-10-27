@@ -5,6 +5,7 @@ import buildings.Floor;
 import buildings.exceptions.SpaceIndexOutOfBoundsException;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 public class DwellingFloor implements Floor, Serializable, Cloneable {
     private Space[] flats;
@@ -155,5 +156,26 @@ public class DwellingFloor implements Floor, Serializable, Cloneable {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public Iterator<Space> iterator(){
+        Iterator<Space> iterator = new Iterator<Space>() {
+
+            private int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                if (index < getSpacesNum()){
+                    return true;
+                }
+                else return false;
+            }
+
+            @Override
+            public Space next() {
+                return getSpace(index++);
+            }
+        };
+        return iterator;
     }
 }
