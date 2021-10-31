@@ -8,7 +8,7 @@ import buildings.exceptions.InvalidSpaceAreaException;
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 
-public class Flat implements Space, Serializable, Cloneable {
+public class Flat implements Space, Serializable, Cloneable{
     private int roomsNum;
     private int flatSquare;
 
@@ -91,5 +91,14 @@ public class Flat implements Space, Serializable, Cloneable {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public int compareTo(Space o){
+        if(flatSquare < o.getSquare())
+            return -1;
+        if(flatSquare > o.getSquare())
+            return 1;
+        return 0;
     }
 }

@@ -5,9 +5,47 @@ import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
 
 import java.io.*;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Buildings {
+
+    private static BuildingFactory buildingFactory = new DwellingFactory();
+
+    public static void setBuildingFactory(BuildingFactory factory){
+        buildingFactory = factory;
+    }
+
+    public static Space createSpace(int area){
+        Space space = buildingFactory.createSpace(area);
+        return space;
+    }
+
+    public static Space createSpace(int rooms, int area){
+        Space space = buildingFactory.createSpace(rooms, area);
+        return space;
+    }
+
+    public static Floor createFloor(int spacesCount){
+        Floor floor = buildingFactory.createFloor(spacesCount);
+        return floor;
+    }
+
+    public static Floor createFloor(Space[] spaces){
+        Floor floor = buildingFactory.createFloor(spaces);
+        return floor;
+    }
+
+    public static Building createBuilding(int floorsCount, int[] spacesCount){
+        Building building = buildingFactory.createBuilding(floorsCount, spacesCount);
+        return building;
+    }
+
+    public static Building createBuilding(Floor[] floors){
+        Building building = buildingFactory.createBuilding(floors);
+        return building;
+    }
+
     public static void outputBuilding (Building building, OutputStream out){
         DataOutputStream outStream = new DataOutputStream(out);
         try {
@@ -34,7 +72,7 @@ public class Buildings {
             int spacesNum;
             for (int i = 0; i < floorsNum; i++){
                 spacesNum = inputStream.readInt();
-                floors[i] = new OfficeFloor(spacesNum);
+                floors[i] = createFloor(spacesNum);
                 int rooms;
                 int square;
                 for (int j = 0; j < spacesNum; j++){
@@ -43,7 +81,7 @@ public class Buildings {
                     floors[i].getSpace(j).setRoomsNum(rooms);
                     floors[i].getSpace(j).setSquare(square);
                 }
-                newBuildind = new OfficeBuilding(floors);
+                newBuildind = createBuilding(floors);
             }
         }
         catch (IOException exception){
@@ -94,7 +132,7 @@ public class Buildings {
                     exception.printStackTrace();
                 }
                 spacesNum = (int) tokenizer.nval;
-                floors[i] = new OfficeFloor(spacesNum);
+                floors[i] = createFloor(spacesNum);
                 for (int j = 0; j < spacesNum; j++){
                     try {
                         tokenizer.nextToken();
@@ -110,10 +148,10 @@ public class Buildings {
                         exception.printStackTrace();
                     }
                     square = (int) tokenizer.nval;
-                    floors[i].setSpace(j, new Office(roomsNum, square));
+                    floors[i].setSpace(j, createSpace(roomsNum, square));
                 }
             }
-            Building newBuilding = new OfficeBuilding(floors);
+            Building newBuilding = createBuilding(floors);
             return newBuilding;
         }
     }
@@ -181,16 +219,95 @@ public class Buildings {
         for (int i = 0; i < floorsNum; i++){
             scanner.skip("\nSpaces number");
             spacesNum = scanner.nextInt();
-            floors[i] = new OfficeFloor(spacesNum);
+            floors[i] = createFloor(spacesNum);
             for (int j = 0; j < spacesNum; j++){
                 scanner.skip("\nRooms");
                 roomsNum = scanner.nextInt();
                 scanner.skip(" Square");
                 square = scanner.nextInt();
-                floors[i].setSpace(j, new Office(roomsNum, square));
+                floors[i].setSpace(j, createSpace(roomsNum, square));
             }
         }
-        Building building = new OfficeBuilding(floors);
+        Building building = createBuilding(floors);
         return building;
     }
+
+
+    public static void sortSpacesArray(Space[] arr){
+        for (int i = 0; i < arr.length; i++){
+            for (int j = 0; j < arr.length - i - 1; j++){
+                Space tmp;
+                if(arr[j].compareTo(arr[j+1]) > 0){
+                    tmp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = tmp;
+                }
+            }
+        }
+    }
+
+    public static void sortFloorsArray(Floor[] arr){
+        for (int i = 0; i < arr.length; i++){
+            for (int j = 0; j < arr.length - i - 1; j++){
+                Floor tmp;
+                if(arr[j].compareTo(arr[j+1]) > 0){
+                    tmp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = tmp;
+                }
+            }
+        }
+    }
+
+    public static <T extends Comparable<T>> void sort(T[] arr){
+        for(int i = 0; i < arr.length; i++){
+            for (int j = 0; j < arr.length - i - 1; j++){
+                T tmp;
+                if (arr[j].compareTo(arr[j+1]) > 0){
+                    tmp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = tmp;
+                }
+            }
+        }
+    }
+
+    public static void sortSpacesComparator(Space[] arr){
+        CriterionSpaces crit = new CriterionSpaces();
+        for (int i = 0; i < arr.length; i++){
+            for(int j = 0; i < arr.length - i - 1; j++) {
+                if (crit.compare(arr[j], arr[j + 1]) > 0) {
+                    Space tmp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = tmp;
+                }
+            }
+        }
+    }
+
+    public static void sortFloorsComparator(Floor[] arr){
+        CriterionFloors crit = new CriterionFloors();
+        for (int i = 0; i < arr.length; i++){
+            for (int j = 0; j < arr.length - i - 1; j++){
+                if (crit.compare(arr[j],arr[j+1]) > 0){
+                    Floor tmp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = tmp;
+                }
+            }
+        }
+    }
+
+    public static <T extends Comparator<T>> void sortComparator(T[] arr, Comparator<T> comparator){
+        for (int i = 0; i < arr.length; i++){
+            for (int j = 0; j < arr.length - i - 1; j++){
+                if (comparator.compare(arr[j],arr[j+1]) > 0){
+                    T tmp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = tmp;
+                }
+            }
+        }
+    }
+
 }

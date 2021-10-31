@@ -92,5 +92,12 @@ public class Office implements Space, Serializable, Cloneable {
         return result;
     }
 
-
+    @Override
+    public int compareTo(Space o){
+        if (square < o.getSquare())
+            return -1;
+        if (square > o.getSquare())
+            return 1;
+        return 0;
+    }
 }

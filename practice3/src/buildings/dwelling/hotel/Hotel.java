@@ -7,6 +7,10 @@ import buildings.Space;
 public class Hotel extends Dwelling {
     private HotelFloor[] floors;
 
+    public Hotel(int floorsCount, int[] spacesCount){
+        super(floorsCount, spacesCount);
+    }
+
     public Hotel(Floor[] floors){
         super(floors);
     }

@@ -136,6 +136,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable {
         return result;
     }
 
+    @Override
     public Iterator<Space> iterator(){
         Iterator<Space> iterator = new Iterator<Space>() {
 
@@ -155,5 +156,14 @@ public class OfficeFloor implements Floor, Serializable, Cloneable {
             }
         };
         return iterator;
+    }
+
+    @Override
+    public int compareTo(Floor o){
+        if(this.getSpacesNum() < o.getSpacesNum())
+            return -1;
+        if(this.getSpacesNum() > o.getSpacesNum())
+            return 1;
+        return 0;
     }
 }
