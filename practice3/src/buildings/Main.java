@@ -4,6 +4,8 @@ import buildings.dwelling.Flat;
 import buildings.office.Office;
 import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
+import buildings.threads.Cleaner;
+import buildings.threads.Repairer;
 
 import java.util.Iterator;
 
@@ -86,9 +88,11 @@ public class Main {
         System.out.println(testBuilding.toString());
         */
 
-        System.out.println(testBuilding.toString());
+        Repairer repairer = new Repairer(testFloor);
+        Cleaner cleaner = new Cleaner(testFloor);
 
-        Iterator<Floor> it = testBuilding.iterator();
+        repairer.start();
+        cleaner.start();
 
     }
 }
