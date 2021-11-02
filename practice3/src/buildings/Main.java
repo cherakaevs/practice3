@@ -6,6 +6,8 @@ import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
 import buildings.threads.Cleaner;
 import buildings.threads.Repairer;
+import buildings.threads.SequentalCleaner;
+import buildings.threads.SequentalRepairer;
 
 import java.util.Iterator;
 
@@ -88,11 +90,11 @@ public class Main {
         System.out.println(testBuilding.toString());
         */
 
-        Repairer repairer = new Repairer(testFloor);
-        Cleaner cleaner = new Cleaner(testFloor);
+        Semaphore semaphore = new Semaphore(2);
+        SequentalRepairer repairer = new SequentalRepairer(testFloor, semaphore);
+        SequentalCleaner cleaner = new SequentalCleaner(testFloor, semaphore);
 
         repairer.start();
         cleaner.start();
-
     }
 }
