@@ -129,9 +129,17 @@ public class OfficeFloor implements Floor, Serializable, Cloneable {
 
     public Object clone(){
         Object result = null;
-
         Space[] tmp = this.getSpacesArray();
-        result = new OfficeFloor(tmp);
+
+        try {
+            result = super.clone();
+            for (int i = 0; i < tmp.length; i++) {
+                ((OfficeFloor) result).setSpace(i, tmp[i]);
+            }
+        }
+        catch (CloneNotSupportedException e){
+            e.printStackTrace();
+        }
         
         return result;
     }
