@@ -15,6 +15,8 @@ public class SequentalCleaner extends Thread implements Runnable{
     @Override
     public void run() {
         try{
+            if(semaphore.isEmpty() != false)
+                Thread.sleep(1000);
             semaphore.acquire();
             for (int i = 0; i < floor.getSpacesNum(); i++){
                 System.out.printf("Cleaning room number %d with total area %d square meters\n", i, floor.getSpace(i).getSquare());
