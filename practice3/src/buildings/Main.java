@@ -1,5 +1,6 @@
 package buildings;
 
+import buildings.dwelling.DwellingFloor;
 import buildings.dwelling.Flat;
 import buildings.office.Office;
 import buildings.office.OfficeBuilding;
@@ -90,11 +91,17 @@ public class Main {
         System.out.println(testBuilding.toString());
         */
 
-        Semaphore semaphore = new Semaphore(2);
+        /*Semaphore semaphore = new Semaphore(2);
         SequentalRepairer repairer = new SequentalRepairer(testFloor, semaphore);
         SequentalCleaner cleaner = new SequentalCleaner(testFloor, semaphore);
 
         repairer.start();
-        cleaner.start();
+        cleaner.start();*/
+
+        Iterator <Floor> iterator = testBuilding.iterator();
+
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
     }
 }

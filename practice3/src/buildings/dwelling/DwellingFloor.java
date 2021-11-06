@@ -162,7 +162,7 @@ public class DwellingFloor implements Floor, Serializable, Cloneable {
     public Iterator<Space> iterator(){
         Iterator<Space> iterator = new Iterator<Space>() {
 
-            private int index = 0;
+            private int index;
 
             @Override
             public boolean hasNext() {
