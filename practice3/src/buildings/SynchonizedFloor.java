@@ -10,52 +10,52 @@ public class SynchonizedFloor implements Floor{
     }
 
     @Override
-    public int getSpacesNum() {
+    public synchronized int getSpacesNum() {
         return synchronizedFloor.getSpacesNum();
     }
 
     @Override
-    public int getSumSquare() {
+    public synchronized int getSumSquare() {
         return synchronizedFloor.getSumSquare();
     }
 
     @Override
-    public int getRoomsNum() {
+    public synchronized int getRoomsNum() {
         return synchronizedFloor.getRoomsNum();
     }
 
     @Override
-    public Space[] getSpacesArray(){
+    public synchronized Space[] getSpacesArray(){
         return synchronizedFloor.getSpacesArray();
     }
 
     @Override
-    public Space getSpace(int num){
+    public synchronized Space getSpace(int num){
         return synchronizedFloor.getSpace(num);
     }
 
     @Override
-    public void setSpace(int num, Space newSpace) {
+    public synchronized void setSpace(int num, Space newSpace) {
         synchronizedFloor.setSpace(num, newSpace);
     }
 
     @Override
-    public void addSpace(int num, Space newSpace) {
+    public synchronized void addSpace(int num, Space newSpace) {
         synchronizedFloor.addSpace(num, newSpace);
     }
 
     @Override
-    public void removeSpace(int num) {
+    public synchronized void removeSpace(int num) {
         synchronizedFloor.removeSpace(num);
     }
 
     @Override
-    public Space getBestSpace() {
+    public synchronized Space getBestSpace() {
         return synchronizedFloor.getBestSpace();
     }
 
     @Override
-    public Object clone() {
+    public synchronized Object clone() {
         return synchronizedFloor.clone();
     }
 
@@ -65,7 +65,7 @@ public class SynchonizedFloor implements Floor{
     }
 
     @Override
-    public int compareTo(Floor o) {
+    public synchronized int compareTo(Floor o) {
         return synchronizedFloor.compareTo(o);
     }
 
