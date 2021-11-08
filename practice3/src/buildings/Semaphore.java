@@ -31,7 +31,7 @@ public class Semaphore {
         }
     }
 
-    public boolean isEmpty(){
+    public synchronized boolean isEmpty(){
         if (users == 0)
             return true;
         else
