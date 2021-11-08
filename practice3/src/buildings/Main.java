@@ -96,13 +96,16 @@ public class Main {
         while (iterator.hasNext()){
             System.out.println(iterator.next());
         }
-        */
 
+        for(Floor f : testBuilding){
+            System.out.println();
+        }
+*/
         Semaphore semaphore = new Semaphore(2);
         SequentalRepairer repairer = new SequentalRepairer(testFloor, semaphore);
         SequentalCleaner cleaner = new SequentalCleaner(testFloor, semaphore);
 
-        repairer.start();
         cleaner.start();
+        repairer.start();
     }
 }
