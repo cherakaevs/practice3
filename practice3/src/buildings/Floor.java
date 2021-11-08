@@ -13,5 +13,4 @@ public interface Floor extends Cloneable, Iterable<Space>, Comparable<Floor>{
     void removeSpace(int num);
     Space getBestSpace();
     Object clone();
-    Iterator<Space> iterator();
 }

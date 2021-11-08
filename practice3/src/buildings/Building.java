@@ -17,5 +17,4 @@ public interface Building extends Cloneable, Iterable<Floor> {
     Space getBestSpace();
     Space[] getSortedSpaceArray();
     Object clone();
-    Iterator<Floor> iterator();
 }
