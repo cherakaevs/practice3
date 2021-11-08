@@ -228,14 +228,10 @@ public class OfficeBuilding  implements Building, Serializable, Cloneable {
     public Object clone(){
         Object result = null;
         Floor[] tmp = this.getFloorsArray();
-        try{
-            result = super.clone();
-            for (int i = 0; i < tmp.length; i++) {
-                ((OfficeBuilding)result).setFloor(i, tmp[i]);
+        for (int i = 0; i < tmp.length; i++){
+            for (int j = 0; j < tmp[i].getSpacesNum(); j++){
+                tmp[i].setSpace(i, (Space)this.getFloor(i).getSpace(j).clone());
             }
-        }
-        catch (CloneNotSupportedException e){
-            e.printStackTrace();
         }
         return result;
     }
