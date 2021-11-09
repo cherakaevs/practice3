@@ -2,6 +2,8 @@ package buildings;
 
 import buildings.dwelling.DwellingFloor;
 import buildings.dwelling.Flat;
+import buildings.dwelling.hotel.Hotel;
+import buildings.dwelling.hotel.HotelFloor;
 import buildings.office.Office;
 import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
@@ -101,11 +103,12 @@ public class Main {
             System.out.println();
         }
 */
-        Semaphore semaphore = new Semaphore(2);
+        /*Semaphore semaphore = new Semaphore(2);
         SequentalRepairer repairer = new SequentalRepairer(testFloor, semaphore);
         SequentalCleaner cleaner = new SequentalCleaner(testFloor, semaphore);
 
         cleaner.start();
-        repairer.start();
+        repairer.start();*/
+
     }
 }
