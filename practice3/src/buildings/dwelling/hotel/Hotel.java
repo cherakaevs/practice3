@@ -5,60 +5,68 @@ import buildings.dwelling.Dwelling;
 import buildings.Space;
 
 public class Hotel extends Dwelling {
-    private HotelFloor[] floors;
+    private int starsNum;
+    private static final int STARS_NUM = 1;
 
     public Hotel(int floorsCount, int[] spacesCount){
         super(floorsCount, spacesCount);
+        for (int i = 0; i < floorsCount; i++){
+            setFloor(i, new HotelFloor(spacesCount[i]));
+        }
+        starsNum = STARS_NUM;
     }
 
     public Hotel(Floor[] floors){
         super(floors);
-    }
-
-    public int getHotelStars(){
-        int maxStars = 0;
-        for (int i = 0; i < floors.length; i++){
-            if (floors[i].getStarsNum() > maxStars){
-                maxStars = floors[i].getStarsNum();
+        int max = ((HotelFloor)floors[0]).getStarsNum();
+        for(int i = 0; i < floors.length; i++){
+            if (floors[i] instanceof HotelFloor){
+                if (max < ((HotelFloor) floors[i]).getStarsNum()){
+                    max = ((HotelFloor) floors[i]).getStarsNum();
+                }
             }
         }
-        return maxStars;
+        starsNum = max;
     }
+
+
 
     public Space getBestSpace(){
         Space bestSpace = null;
         double v = 0;
-        for (int i = 0; i < floors.length; i++){
-            for (int j = 0; j < floors[i].getSpacesNum(); j++){
-                double value = 0;
-                switch (floors[i].getStarsNum()){
-                    case (1):
-                        value = 0.25 * floors[i].getSpace(j).getSquare();
-                        break;
-                    case (2):
-                        value = 0.5 * floors[i].getSpace(j).getSquare();
-                        break;
-                    case (3):
-                        value = 1.0 * floors[i].getSpace(j).getSquare();
-                        break;
-                    case (4):
-                        value = 1.25 * floors[i].getSpace(j).getSquare();
-                        break;
-                    case (5):
-                        value = 1.5 * floors[i].getSpace(j).getSquare();
-                        break;
-                }
-                if(value > v){
-                    bestSpace = floors[i].getSpace(j);
-                    v = value;
-                }
+        double coef = 0.25;
+        int square;
+        for(int i = 0; i < getFloorsNum(); i++){
+            if(!(getFloor(i) instanceof HotelFloor)) continue;
+            switch (((HotelFloor) getFloor(i)).getStarsNum()){
+                case 1:
+                    coef = 0.25;
+                    break;
+                case 2:
+                    coef = 0.5;
+                    break;
+                case 3:
+                    coef = 1;
+                    break;
+                case 4:
+                    coef = 1.25;
+                    break;
+                case 5:
+                    coef = 1.5;
+                    break;
+            }
+            square = getFloor(i).getBestSpace().getSquare();
+
+            if (v < square * coef){
+                v = square * coef;
+                bestSpace = getFloor(i).getBestSpace();
             }
         }
         return bestSpace;
     }
 
     public String toString(){
-        String str = new String("Hotel (" + getHotelStars() + ", " + getFloorsNum() +", ");
+        String str = new String("Hotel (" + starsNum + ", " + getFloorsNum() +", ");
         for (int i = 0; i < getFloorsNum(); i++){
             str += getFloor(i).toString();
         }
@@ -74,8 +82,8 @@ public class Hotel extends Dwelling {
                     return flag;
                 }
             }
+            flag = true;
         }
-        flag = true;
         return flag;
     }
 
