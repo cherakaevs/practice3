@@ -5,7 +5,7 @@ import buildings.dwelling.Flat;
 import buildings.dwelling.hotel.Hotel;
 import buildings.dwelling.hotel.HotelFloor;
 
-public class HotelFactory {
+public class HotelFactory implements BuildingFactory {
     public Space createSpace(int area) {
         Space space = new Flat(area);
         return space;
