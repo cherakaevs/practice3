@@ -23,26 +23,26 @@ public class BinatyClient {
             String buildingsInfo = "buildings.txt";
             String buildingsTypes = "types.txt";
 
-            FileWriter fileWriter = new FileWriter(new File(path));
+            FileWriter writer = new FileWriter(new File(path));
             Scanner scanner = new Scanner(new FileReader(buildingsTypes));
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(buildingsInfo));
+            BufferedReader reader = new BufferedReader(new FileReader(buildingsInfo));
 
             while (scanner.hasNext()) {
                 type = scanner.nextLine();
                 System.out.println(type);
                 Thread.sleep(1000);
                 dos.writeUTF(type);
-                building = Buildings.readBuilding(bufferedReader);
+                building = Buildings.readBuilding(reader);
                 Thread.sleep(1000);
                 Buildings.outputBuilding(building, dos);
                 result = dis.readUTF();
-                fileWriter.write(result + "\n");
+                writer.write(result + "\n");
                 System.out.println(result);
             }
 
-            fileWriter.close();
+            writer.close();
             scanner.close();
-            bufferedReader.close();
+            reader.close();
             dos.writeUTF("Exit");
             dos.flush();
 
