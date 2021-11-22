@@ -103,12 +103,12 @@ public class Main {
             System.out.println();
         }
 */
-        Semaphore semaphore = new Semaphore(2);
+        /*Semaphore semaphore = new Semaphore(2);
         SequentalRepairer repairer = new SequentalRepairer(testFloor, semaphore);
         SequentalCleaner cleaner = new SequentalCleaner(testFloor, semaphore);
 
         cleaner.start();
-        repairer.start();
+        repairer.start();*/
 
     }
 }
