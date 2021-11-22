@@ -52,8 +52,6 @@ public class BinaryServer {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-
-
                         try (
                                 DataInputStream dis = new DataInputStream(socket.getInputStream());
                                 DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
