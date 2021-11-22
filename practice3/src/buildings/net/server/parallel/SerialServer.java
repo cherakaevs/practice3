@@ -15,7 +15,7 @@ import java.net.Socket;
 
 public class SerialServer {
     public static double priceCheck(Building building) throws BuildingUnderArrestException {
-        if (arestedBuildong(building))
+        if (arrestedBuilding(building))
             throw new BuildingUnderArrestException();
 
         double squarePrice;
@@ -32,7 +32,7 @@ public class SerialServer {
         return result;
     }
 
-    public static boolean arestedBuildong(Building building) {
+    public static boolean arrestedBuilding(Building building) {
 
         int chance = (int) (Math.random() * 10);
         if (chance > 8) {

@@ -14,7 +14,7 @@ import java.net.Socket;
 public class BinaryServer {
 
     public static double priceCheck(Building building) throws BuildingUnderArrestException {
-        if (arestedBuildong(building))
+        if (arrestedBuildong(building))
             throw new BuildingUnderArrestException();
 
         double squarePrice;
@@ -31,7 +31,7 @@ public class BinaryServer {
         return result;
     }
 
-    public static boolean arestedBuildong(Building building) {
+    public static boolean arrestedBuildong(Building building) {
 
         int chance = (int) (Math.random() * 10);
         if (chance > 8) {
