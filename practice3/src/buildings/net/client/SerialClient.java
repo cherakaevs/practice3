@@ -53,7 +53,7 @@ public class SerialClient {
                 price = new ObjectInputStream(dis).readObject();
 
                 if(price instanceof Double){
-                    System.out.println("\nPrice: " + price + "\n");
+                    System.out.println("Price: " + price + "\n");
                     writer.write(price + "\n");
                 }
 

@@ -60,7 +60,7 @@ public class SerialServer {
                     try {
                         System.out.println("Building: " + building);
                         price = priceCheck(building);
-                        System.out.println("---------------\nPrice:" + price +"\n-----------------");
+                        System.out.println("Price:" + price);
                         new ObjectOutputStream(dos).writeObject(price);
                     }
                     catch (BuildingUnderArrestException e){
