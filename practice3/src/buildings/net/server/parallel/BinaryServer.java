@@ -43,7 +43,7 @@ public class BinaryServer {
 
     public static void main(String[] args) {
 
-        try (ServerSocket server = new ServerSocket(0)) {
+        try (ServerSocket server = new ServerSocket(1234)) {
 
             System.out.println("Server started");
 

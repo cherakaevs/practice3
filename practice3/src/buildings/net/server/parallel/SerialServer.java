@@ -42,7 +42,7 @@ public class SerialServer {
     }
 
     public static void main(String[] args) {
-        try (ServerSocket server = new ServerSocket(0)){
+        try (ServerSocket server = new ServerSocket(1234)){
 
             System.out.println("Server started");
 
@@ -53,7 +53,7 @@ public class SerialServer {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            try (ServerSocket socket1 = new ServerSocket(1)) {
+                            try (ServerSocket socket1 = new ServerSocket(1235)) {
                                 System.out.println("Server started");
 
                                 while (true) {

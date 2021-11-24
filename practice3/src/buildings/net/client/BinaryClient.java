@@ -4,14 +4,15 @@ import buildings.Building;
 import buildings.Buildings;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class BinatyClient {
+public class BinaryClient {
     public static void main(String[] args) {
         try {
 
-            Socket socket = new Socket("127.0.0.1", 0);
+            Socket socket = new Socket(InetAddress.getLocalHost(), 1234);
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
             DataInputStream dis = new DataInputStream(socket.getInputStream());
 
