@@ -1,5 +1,6 @@
 package buildings;
 
+import buildings.dwelling.Dwelling;
 import buildings.dwelling.DwellingFloor;
 import buildings.dwelling.Flat;
 import buildings.dwelling.hotel.Hotel;
@@ -12,13 +13,16 @@ import buildings.threads.Repairer;
 import buildings.threads.SequentalCleaner;
 import buildings.threads.SequentalRepairer;
 
+import java.io.*;
+import java.io.DataOutputStream;
+import java.nio.file.Path;
 import java.util.Iterator;
 
 
 public class Main {
     public static void main(String[] args) {
         int[] rooms = {1, 2, 3, 4};
-        Building testBuilding = new OfficeBuilding(4, rooms);
+        /*Building testBuilding = new OfficeBuilding(4, rooms);
         Building test2 = null;
 
         Floor testFloor = new OfficeFloor(4);
@@ -26,7 +30,7 @@ public class Main {
         Space testSpace = new Office(4,200);
 
         System.out.println(testBuilding.getSpacesNum());
-
+*/
        /* System.out.println(testBuilding.getFloorsNum());
 
         System.out.println(testBuilding.getSpacesNum());
@@ -109,6 +113,32 @@ public class Main {
 
         cleaner.start();
         repairer.start();*/
+
+        Building building1 = new OfficeBuilding(4, rooms);
+        Building building2 = new Hotel(4, rooms);
+        Building building3 = new Dwelling(4, rooms);
+
+        for (int j = 0; j < 4; j++) {
+            building1.setFloor(j, new OfficeFloor(rooms[j]));
+        }
+        for (int j = 0; j < 4; j++) {
+            building2.setFloor(j, new HotelFloor(rooms[j]));
+        }
+        for (int j = 0; j < 4; j++) {
+            building3.setFloor(j, new DwellingFloor(rooms[j]));
+        }
+
+
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/karmikfeels/IdeaProjects/practice3/practice3/src/buildings.txt"));
+            Building buildingtest = Buildings.readBuilding(reader);
+            System.out.println(buildingtest);
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+
+
 
     }
 }

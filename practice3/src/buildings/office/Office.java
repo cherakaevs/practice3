@@ -20,7 +20,7 @@ public class Office implements Space, Serializable, Cloneable {
     }
 
     public Office(int square){
-        if (square < 30 || square > 500){
+        if (square < 20 || square > 500){
             throw new InvalidSpaceAreaException(square);
         }
         this.rooms = ROOMS;
@@ -31,7 +31,7 @@ public class Office implements Space, Serializable, Cloneable {
         if (rooms < 1 || rooms > 10){
             throw new InvalidRoomsCountException(rooms);
         }
-        if (square < 30 || square > 500){
+        if (square < 20 || square > 500){
             throw new InvalidSpaceAreaException(square);
         }
         this.rooms = rooms;
@@ -54,7 +54,7 @@ public class Office implements Space, Serializable, Cloneable {
     }
 
     public void setSquare(int num){
-        if (num < 30 || num > 500){
+        if (num < 20 || num > 500){
             throw new InvalidSpaceAreaException(num);
         }
         this.square = num;

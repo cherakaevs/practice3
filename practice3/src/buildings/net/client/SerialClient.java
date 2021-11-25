@@ -6,6 +6,7 @@ import buildings.exceptions.BuildingUnderArrestException;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class SerialClient {
@@ -21,8 +22,8 @@ public class SerialClient {
 
             String path = "serialResult.txt";
 
-            String buildingsInfo = "buildings.txt";
-            String buildingsTypes = "types.txt";
+            String buildingsInfo = "/Users/karmikfeels/IdeaProjects/practice3/practice3/src/buildings.txt";
+            String buildingsTypes = "/Users/karmikfeels/IdeaProjects/practice3/practice3/src/types.txt";
 
             FileWriter writer = new FileWriter(new File(path));
             Scanner scanner = new Scanner(new FileReader(buildingsTypes));

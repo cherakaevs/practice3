@@ -31,7 +31,7 @@ public class Flat implements Space, Serializable, Cloneable{
     }
 
     public void setSquare(int square){
-        if (square < 30 || square > 500){
+        if (square < 20 || square > 500){
             throw new InvalidSpaceAreaException(square);
         }
         flatSquare = square;
@@ -43,7 +43,7 @@ public class Flat implements Space, Serializable, Cloneable{
     }
 
     public Flat(int square){
-        if (square < 30 || square > 500){
+        if (square < 20 || square > 500){
             throw new InvalidSpaceAreaException(square);
         }
         roomsNum = defaultRoomNum;
@@ -51,7 +51,7 @@ public class Flat implements Space, Serializable, Cloneable{
     }
 
     public Flat(int rNum, int square){
-        if (square < 30 || square > 500){
+        if (square < 20 || square > 500){
             throw new InvalidSpaceAreaException(square);
         }
         if (rNum < 1 || rNum > 10){

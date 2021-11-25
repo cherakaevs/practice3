@@ -21,8 +21,8 @@ public class BinaryClient {
             String result;
 
             String path = "result.txt";
-            String buildingsInfo = "buildings.txt";
-            String buildingsTypes = "types.txt";
+            String buildingsInfo = "/Users/karmikfeels/IdeaProjects/practice3/practice3/src/buildings.txt";
+            String buildingsTypes = "/Users/karmikfeels/IdeaProjects/practice3/practice3/src/types.txt";
 
             FileWriter writer = new FileWriter(new File(path));
             Scanner scanner = new Scanner(new FileReader(buildingsTypes));
