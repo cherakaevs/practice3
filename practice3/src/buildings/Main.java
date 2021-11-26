@@ -129,15 +129,20 @@ public class Main {
         }
 
 
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/karmikfeels/IdeaProjects/practice3/practice3/src/buildings.txt"));
-            Building buildingtest = Buildings.readBuilding(reader);
-            System.out.println(buildingtest);
+        /*try{
+            PrintWriter writer = new PrintWriter("test.txt");
+            Buildings.writeBuilding(building1, writer);
+            writer.println();
+            Buildings.writeBuilding(building2, writer);
+            writer.println();
+            Buildings.writeBuilding(building3, writer);
+            writer.println();
+            writer.close();
         }
-        catch (FileNotFoundException e){
+        catch (IOException e){
             e.printStackTrace();
         }
-
+*/
 
 
     }
