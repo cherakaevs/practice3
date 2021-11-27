@@ -5,7 +5,7 @@ import java.util.Iterator;
 public interface Building extends Cloneable, Iterable<Floor> {
     int getFloorsNum();
     int getSpacesNum();
-    int getSumSquare();
+    double getSumSquare();
     int getRoomsNum();
     Floor[] getFloorsArray();
     Floor getFloor(int num);

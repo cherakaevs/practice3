@@ -12,12 +12,12 @@ public class Buildings {
         buildingFactory = factory;
     }
 
-    public static Space createSpace(int area){
+    public static Space createSpace(double area){
         Space space = buildingFactory.createSpace(area);
         return space;
     }
 
-    public static Space createSpace(int rooms, int area){
+    public static Space createSpace(int rooms, double area){
         Space space = buildingFactory.createSpace(rooms, area);
         return space;
     }
@@ -50,7 +50,7 @@ public class Buildings {
                 outStream.writeInt(building.getFloor(i).getSpacesNum());
                 for (int j = 0; j < building.getFloor(i).getSpacesNum(); j++){
                     outStream.writeInt(building.getFloor(i).getSpace(j).getRoomsNum());
-                    outStream.writeInt(building.getFloor(i).getSpace(j).getSquare());
+                    outStream.writeDouble(building.getFloor(i).getSpace(j).getSquare());
                 }
             }
         }
@@ -70,10 +70,10 @@ public class Buildings {
                 spacesNum = inputStream.readInt();
                 floors[i] = createFloor(spacesNum);
                 int rooms;
-                int square;
+                double square;
                 for (int j = 0; j < spacesNum; j++){
                     rooms = inputStream.readInt();
-                    square = inputStream.readInt();
+                    square = inputStream.readDouble();
                     floors[i].getSpace(j).setRoomsNum(rooms);
                     floors[i].getSpace(j).setSquare(square);
                 }
@@ -119,7 +119,7 @@ public class Buildings {
             Floor[] floors = new Floor[floorsNum];
             int spacesNum;
             int roomsNum;
-            int square;
+            double square;
             for (int i = 0; i < floorsNum; i++){
                 try {
                     tokenizer.nextToken();
@@ -143,7 +143,7 @@ public class Buildings {
                     catch(IOException exception){
                         exception.printStackTrace();
                     }
-                    square = (int) tokenizer.nval;
+                    square = tokenizer.nval;
                     floors[i].setSpace(j, createSpace(roomsNum, square));
                 }
             }
@@ -190,7 +190,7 @@ public class Buildings {
         ((PrintWriter)out).printf("\nFloors number %d\n", floorsNum);
         int spacesNum;
         int roomsNum;
-        int square;
+        double square;
         for (int i = 0; i < floorsNum; i++){
             spacesNum = building.getFloor(i).getSpacesNum();
             ((PrintWriter)out).printf("\nSpaces number %d", spacesNum);
@@ -210,7 +210,7 @@ public class Buildings {
 
         int spacesNum;
         int roomsNum;
-        int square;
+        double square;
             scanner.skip("\n");
         for (int i = 0; i < floorsNum; i++){
             scanner.skip("\nSpaces number");
@@ -220,7 +220,7 @@ public class Buildings {
                 scanner.skip("\nRooms");
                 roomsNum = scanner.nextInt();
                 scanner.skip(" Square");
-                square = scanner.nextInt();
+                square = scanner.nextDouble();
                 floors[i].setSpace(j, createSpace(roomsNum, square));
             }
         }

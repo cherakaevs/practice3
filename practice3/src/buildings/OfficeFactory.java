@@ -6,12 +6,12 @@ import buildings.office.OfficeFloor;
 
 public class OfficeFactory implements BuildingFactory{
 
-    public Space createSpace(int area) {
+    public Space createSpace(double area) {
         Space space = new Office(area);
         return space;
     }
 
-    public Space createSpace(int rooms, int area){
+    public Space createSpace(int rooms, double area){
         Space space = new Office(rooms, area);
         return space;
     }

@@ -2,8 +2,8 @@ package buildings;
 
 public interface Space extends Cloneable, Comparable<Space>{
     int getRoomsNum();
-    int getSquare();
+    double getSquare();
     void setRoomsNum(int num);
-    void setSquare(int square);
+    void setSquare(double square);
     Object clone();
 }

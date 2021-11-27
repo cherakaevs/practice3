@@ -35,7 +35,7 @@ public class Hotel extends Dwelling {
         Space bestSpace = null;
         double v = 0;
         double coef = 0.25;
-        int square;
+        double square;
         for(int i = 0; i < getFloorsNum(); i++){
             if(!(getFloor(i) instanceof HotelFloor)) continue;
             switch (((HotelFloor) getFloor(i)).getStarsNum()){

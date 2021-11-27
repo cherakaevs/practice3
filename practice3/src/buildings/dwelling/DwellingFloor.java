@@ -28,8 +28,8 @@ public class DwellingFloor implements Floor, Serializable, Cloneable {
         return flats.length;
     }
 
-    public int getSumSquare() {
-        int sum = 0;
+    public double getSumSquare() {
+        double sum = 0.0;
         for (int i = 0; i < flats.length; i++) {
             sum += flats[i].getSquare();
         }
@@ -103,9 +103,9 @@ public class DwellingFloor implements Floor, Serializable, Cloneable {
 
     public Space getBestSpace(){
         Space tmpFlat = null;
-        int maxSquare = 0;
+        double maxSquare = 0;
         for (int i = 0; i < flats.length; i++){
-            int tmp = flats[i].getSquare();
+            double tmp = flats[i].getSquare();
             if (tmp > maxSquare){
                 tmpFlat = flats[i];
             }

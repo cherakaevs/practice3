@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public interface Floor extends Cloneable, Iterable<Space>, Comparable<Floor>{
     int getSpacesNum();
-    int getSumSquare();
+    double getSumSquare();
     int getRoomsNum();
     Space[] getSpacesArray();
     Space getSpace(int num);

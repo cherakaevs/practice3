@@ -6,12 +6,12 @@ import buildings.dwelling.hotel.Hotel;
 import buildings.dwelling.hotel.HotelFloor;
 
 public class HotelFactory implements BuildingFactory {
-    public Space createSpace(int area) {
+    public Space createSpace(double area) {
         Space space = new Flat(area);
         return space;
     }
 
-    public Space createSpace(int rooms, int area){
+    public Space createSpace(int rooms, double area){
         Space space = new Flat(rooms, area);
         return space;
     }

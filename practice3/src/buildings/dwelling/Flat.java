@@ -10,16 +10,16 @@ import java.nio.ByteBuffer;
 
 public class Flat implements Space, Serializable, Cloneable{
     private int roomsNum;
-    private int flatSquare;
+    private double flatSquare;
 
     private static final int defaultRoomNum = 2;
-    private static final int defaultFlatSquare = 50;
+    private static final double defaultFlatSquare = 50.0;
 
     public int getRoomsNum() {
         return roomsNum;
     }
 
-    public int getSquare(){
+    public double getSquare(){
         return flatSquare;
     }
 
@@ -30,7 +30,7 @@ public class Flat implements Space, Serializable, Cloneable{
         roomsNum = num;
     }
 
-    public void setSquare(int square){
+    public void setSquare(double square){
         if (square < 20 || square > 500){
             throw new InvalidSpaceAreaException(square);
         }
@@ -42,7 +42,7 @@ public class Flat implements Space, Serializable, Cloneable{
         flatSquare = defaultFlatSquare;
     }
 
-    public Flat(int square){
+    public Flat(double square){
         if (square < 20 || square > 500){
             throw new InvalidSpaceAreaException(square);
         }
@@ -50,7 +50,7 @@ public class Flat implements Space, Serializable, Cloneable{
         flatSquare = square;
     }
 
-    public Flat(int rNum, int square){
+    public Flat(int rNum, double square){
         if (square < 20 || square > 500){
             throw new InvalidSpaceAreaException(square);
         }
@@ -75,9 +75,9 @@ public class Flat implements Space, Serializable, Cloneable{
 
     public int hashCode(){
         int result;
-        byte [] b = ByteBuffer.allocate(4).putInt(flatSquare).array();
-        int x1 = b[0] + 256 * b[1];
-        int x2 = b[2] + 256 * b[3];
+        byte [] b = ByteBuffer.allocate(8).putDouble(flatSquare).array();
+        int x1 = b[0] + 256 * b[1] + 65536 * b[2] + 1677721 * b[3];
+        int x2 = b[4] + 256 * b[5] + 65536 * b[6] + 1677721 * b[7];;
         result = roomsNum ^ x1 ^ x2;
         return result;
     }

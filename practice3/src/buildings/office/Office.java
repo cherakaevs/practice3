@@ -9,9 +9,9 @@ import java.nio.ByteBuffer;
 
 public class Office implements Space, Serializable, Cloneable {
     private int rooms;
-    private int square;
+    private double square;
 
-    private static final int SQUARE = 250;
+    private static final double SQUARE = 250.0;
     private static final int ROOMS = 1;
 
     public Office(){
@@ -19,7 +19,7 @@ public class Office implements Space, Serializable, Cloneable {
         this.square = SQUARE;
     }
 
-    public Office(int square){
+    public Office(double square){
         if (square < 20 || square > 500){
             throw new InvalidSpaceAreaException(square);
         }
@@ -27,7 +27,7 @@ public class Office implements Space, Serializable, Cloneable {
         this.square = square;
     }
 
-    public Office(int rooms, int square){
+    public Office(int rooms, double square){
         if (rooms < 1 || rooms > 10){
             throw new InvalidRoomsCountException(rooms);
         }
@@ -42,7 +42,7 @@ public class Office implements Space, Serializable, Cloneable {
         return this.rooms;
     }
 
-    public int getSquare(){
+    public double getSquare(){
         return this.square;
     }
 
@@ -53,7 +53,7 @@ public class Office implements Space, Serializable, Cloneable {
         this.rooms = num;
     }
 
-    public void setSquare(int num){
+    public void setSquare(double num){
         if (num < 20 || num > 500){
             throw new InvalidSpaceAreaException(num);
         }
@@ -74,9 +74,9 @@ public class Office implements Space, Serializable, Cloneable {
 
     public int hashCode(){
         int result;
-        byte [] b = ByteBuffer.allocate(4).putInt(square).array();
-        int x1 = b[0] + 256 * b[1];
-        int x2 = b[2] + 256 * b[3];
+        byte [] b = ByteBuffer.allocate(8).putDouble(square).array();
+        int x1 = b[0] + 256 * b[1] + 65536 * b[2] + 1677721 * b[3];
+        int x2 = b[4] + 256 * b[5] + 65536 * b[6] + 1677721 * b[7];;
         result = rooms ^ x1 ^ x2;
         return result;
     }
