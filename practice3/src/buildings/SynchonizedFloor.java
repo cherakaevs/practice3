@@ -15,7 +15,7 @@ public class SynchonizedFloor implements Floor{
     }
 
     @Override
-    public synchronized int getSumSquare() {
+    public synchronized double getSumSquare() {
         return synchronizedFloor.getSumSquare();
     }
 

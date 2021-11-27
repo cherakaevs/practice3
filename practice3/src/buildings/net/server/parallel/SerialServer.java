@@ -19,7 +19,7 @@ public class SerialServer {
             throw new BuildingUnderArrestException();
 
         double squarePrice;
-        int square = building.getSumSquare();
+        double square = building.getSumSquare();
         if (building instanceof Dwelling) {
             squarePrice = 1000;
         } else if (building instanceof OfficeBuilding) {
