@@ -114,7 +114,7 @@ public class Main {
         cleaner.start();
         repairer.start();*/
 
-        Building building1 = new OfficeBuilding(4, rooms);
+       /* Building building1 = new OfficeBuilding(4, rooms);
         Building building2 = new Hotel(4, rooms);
         Building building3 = new Dwelling(4, rooms);
 
@@ -126,7 +126,7 @@ public class Main {
         }
         for (int j = 0; j < 4; j++) {
             building3.setFloor(j, new DwellingFloor(rooms[j]));
-        }
+        }*/
 
 
         /*try{
@@ -143,7 +143,5 @@ public class Main {
             e.printStackTrace();
         }
 */
-
-
     }
 }

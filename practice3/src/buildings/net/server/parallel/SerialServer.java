@@ -3,6 +3,7 @@ package buildings.net.server.parallel;
 import buildings.Building;
 import buildings.Buildings;
 import buildings.dwelling.Dwelling;
+import buildings.dwelling.hotel.Hotel;
 import buildings.exceptions.BuildingUnderArrestException;
 import buildings.office.OfficeBuilding;
 
@@ -20,12 +21,12 @@ public class SerialServer {
 
         double squarePrice;
         double square = building.getSumSquare();
-        if (building instanceof Dwelling) {
-            squarePrice = 1000;
+        if (building instanceof Hotel) {
+            squarePrice = 2000;
         } else if (building instanceof OfficeBuilding) {
             squarePrice = 1500;
         } else {
-            squarePrice = 2000;
+            squarePrice = 1000;
         }
 
         double result = square * squarePrice;
@@ -42,66 +43,51 @@ public class SerialServer {
     }
 
     public static void main(String[] args) {
-        try (ServerSocket server = new ServerSocket(1234)){
+
+        try (ServerSocket server = new ServerSocket(1234)) {
 
             System.out.println("Server started");
 
-            while (true){
-                try{
-                    Socket socket = server.accept();
-
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try (ServerSocket socket1 = new ServerSocket(1235)) {
-                                System.out.println("Server started");
-
-                                while (true) {
-                                    Socket socket2 = socket1.accept();
-                                    DataOutputStream dos = new DataOutputStream(socket2.getOutputStream());
-                                    DataInputStream dis = new DataInputStream(socket2.getInputStream());
-
-                                    try {
-                                        int flag;
-                                        Building building;
-
-                                        while ((flag = dis.readInt()) == 1) {
-                                            building = Buildings.deserializeBuilding(dis);
-                                            Object price;
-
-                                            System.out.println("Building: " + building);
-
-                                            try {
-                                                price = priceCheck(building);
-                                                System.out.println("Price: " + price);
-                                                new ObjectOutputStream(dos).writeObject(price);
-                                            } catch (BuildingUnderArrestException e) {
-                                                new ObjectOutputStream(dos).writeObject(new BuildingUnderArrestException());
-                                            }
-                                        }
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
+            while (true) {
+                Socket socket = server.accept();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try (
+                                DataInputStream dis = new DataInputStream(socket.getInputStream());
+                                DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+                        ) {
+                            Building building;
+                            int flag;
+                            while ((flag = dis.readInt()) == 1){
+                                building = Buildings.deserializeBuilding(dis);
+                                Object price;
+                                try {
+                                    System.out.println("Building: " + building);
+                                    price = priceCheck(building);
+                                    System.out.println("Price:" + price);
+                                    new ObjectOutputStream(dos).writeObject(price);
                                 }
+                                catch (BuildingUnderArrestException e){
+                                    new ObjectOutputStream(dos).writeObject(new BuildingUnderArrestException());
+                                }
+                                dos.flush();
+                                System.out.println("\n---------------------------------------------------------------------------");
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } finally {
+                            try {
+                                socket.close();
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            } finally {
-                                try {
-                                    socket.close();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
                             }
                         }
-                    }).start();
-                }
-                catch (NullPointerException e){
-                    e.printStackTrace();
-                }
+                    }
+                }).start();
             }
-        }
-        catch (IOException e){
-            new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

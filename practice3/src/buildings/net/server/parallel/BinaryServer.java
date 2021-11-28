@@ -2,6 +2,7 @@ package buildings.net.server.parallel;
 
 import buildings.*;
 import buildings.dwelling.Dwelling;
+import buildings.dwelling.hotel.Hotel;
 import buildings.exceptions.BuildingUnderArrestException;
 import buildings.office.OfficeBuilding;
 
@@ -12,26 +13,25 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class BinaryServer {
-
     public static double priceCheck(Building building) throws BuildingUnderArrestException {
-        if (arrestedBuildong(building))
+        if (arrestedBuilding(building))
             throw new BuildingUnderArrestException();
 
         double squarePrice;
         double square = building.getSumSquare();
-        if (building instanceof Dwelling) {
-            squarePrice = 1000;
+        if (building instanceof Hotel) {
+            squarePrice = 2000;
         } else if (building instanceof OfficeBuilding) {
             squarePrice = 1500;
         } else {
-            squarePrice = 2000;
+            squarePrice = 1000;
         }
 
         double result = square * squarePrice;
         return result;
     }
 
-    public static boolean arrestedBuildong(Building building) {
+    public static boolean arrestedBuilding(Building building) {
 
         int chance = (int) (Math.random() * 10);
         if (chance > 8) {
