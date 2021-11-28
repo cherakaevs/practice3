@@ -2,7 +2,6 @@ package buildings.net.server.sequental;
 
 import buildings.Building;
 import buildings.Buildings;
-import buildings.dwelling.Dwelling;
 import buildings.dwelling.hotel.Hotel;
 import buildings.exceptions.BuildingUnderArrestException;
 import buildings.office.OfficeBuilding;
