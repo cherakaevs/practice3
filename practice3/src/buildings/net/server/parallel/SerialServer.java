@@ -58,8 +58,7 @@ public class SerialServer {
                                 DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
                         ) {
                             Building building;
-                            int flag;
-                            while ((flag = dis.readInt()) == 1){
+                            while ((dis.readInt()) == 1){
                                 building = Buildings.deserializeBuilding(dis);
                                 Object price;
                                 try {

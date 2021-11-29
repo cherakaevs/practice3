@@ -53,8 +53,7 @@ public class SerialServer {
 
 
                 Building building;
-                int flag;
-                while ((flag = dis.readInt()) == 1){
+                while ((dis.readInt()) == 1){
                     building = Buildings.deserializeBuilding(dis);
                     Object price;
                     try {

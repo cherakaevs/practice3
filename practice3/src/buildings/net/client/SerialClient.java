@@ -17,7 +17,6 @@ public class SerialClient {
 
             Building building;
             String type;
-            String result;
 
             String path = "serialResult.txt";
 
