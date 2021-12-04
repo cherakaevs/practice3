@@ -61,11 +61,13 @@ public class Flat implements Space, Serializable, Cloneable{
         flatSquare = square;
     }
 
+    @Override
     public String toString(){
         String str = new String("Flat (" + roomsNum + ", " + flatSquare + ")");
         return str;
     }
 
+    @Override
     public boolean equals(Object object){
         if ((object instanceof Flat) && (((Flat) object).roomsNum == this.roomsNum) && (((Flat) object).flatSquare == this.flatSquare)) {
             return true;
@@ -73,6 +75,7 @@ public class Flat implements Space, Serializable, Cloneable{
         return false;
     }
 
+    @Override
     public int hashCode(){
         int result;
         byte [] b = ByteBuffer.allocate(8).putDouble(flatSquare).array();
@@ -82,6 +85,7 @@ public class Flat implements Space, Serializable, Cloneable{
         return result;
     }
 
+    @Override
     public Object clone(){
         Object result = null;
         try{

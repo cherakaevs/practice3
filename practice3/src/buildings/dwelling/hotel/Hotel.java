@@ -31,6 +31,7 @@ public class Hotel extends Dwelling {
 
 
 
+    @Override
     public Space getBestSpace(){
         Space bestSpace = null;
         double v = 0;
@@ -65,6 +66,7 @@ public class Hotel extends Dwelling {
         return bestSpace;
     }
 
+    @Override
     public String toString(){
         String str = new String("Hotel (" + starsNum + ", " + getFloorsNum() +", ");
         for (int i = 0; i < getFloorsNum(); i++){
@@ -74,6 +76,7 @@ public class Hotel extends Dwelling {
         return str;
     }
 
+    @Override
     public boolean equals(Object object){
         boolean flag = false;
         if((object instanceof Hotel) && ((Hotel) object).getFloorsNum() == this.getFloorsNum()){
@@ -87,6 +90,7 @@ public class Hotel extends Dwelling {
         return flag;
     }
 
+    @Override
     public int hashCode(){
         int result = 0;
         for (int i = 0; i < getFloorsNum(); i++){

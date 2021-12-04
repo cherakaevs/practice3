@@ -97,6 +97,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable {
         return tmp;
     }
 
+    @Override
     public String toString(){
         String str = new String("OfficeFloor (" + getSpacesNum() +",");
         for (int i = 0; i < getSpacesNum(); i++){
@@ -106,6 +107,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable {
         return str;
     }
 
+    @Override
     public boolean equals(Object object){
         boolean res = false;
         if ((object instanceof OfficeFloor) && (((OfficeFloor) object).getSpacesNum() == this.getSpacesNum())){
@@ -119,6 +121,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable {
         return res;
     }
 
+    @Override
     public int hashCode(){
         int result = 0;
         for (int i = 0; i < getSpacesNum(); i++){
@@ -127,6 +130,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable {
         return result;
     }
 
+    @Override
     public Object clone(){
         Object result = null;
         Space[] tmp = this.getSpacesArray();

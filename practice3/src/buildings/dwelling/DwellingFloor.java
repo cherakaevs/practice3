@@ -113,6 +113,7 @@ public class DwellingFloor implements Floor, Serializable, Cloneable {
         return tmpFlat;
     }
 
+    @Override
     public String toString(){
         String str = new String("DwellingFloor (" + getSpacesNum() +",");
         for (int i = 0; i < getSpacesNum(); i++){
@@ -122,6 +123,7 @@ public class DwellingFloor implements Floor, Serializable, Cloneable {
         return str;
     }
 
+    @Override
     public boolean equals(Object object){
         boolean res = false;
         if ((object instanceof DwellingFloor) && (((DwellingFloor) object).getSpacesNum() == this.getSpacesNum())){
@@ -135,6 +137,7 @@ public class DwellingFloor implements Floor, Serializable, Cloneable {
         return res;
     }
 
+    @Override
     public int hashCode(){
         int result = 0;
         for (int i = 0; i < getSpacesNum(); i++){
@@ -143,6 +146,7 @@ public class DwellingFloor implements Floor, Serializable, Cloneable {
         return result;
     }
 
+    @Override
     public Object clone(){
         DwellingFloor result = null;
         try{

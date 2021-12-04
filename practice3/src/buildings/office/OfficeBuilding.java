@@ -195,6 +195,7 @@ public class OfficeBuilding  implements Building, Serializable, Cloneable {
         return sortedArray;
     }
 
+    @Override
     public String toString(){
         String str = new String("OfficeBuilding (" + this.getFloorsNum()+ ",");
         for (int i = 0; i < this.getFloorsNum(); i++){
@@ -204,6 +205,7 @@ public class OfficeBuilding  implements Building, Serializable, Cloneable {
         return str;
     }
 
+    @Override
     public boolean equals(Object object){
         boolean res = false;
         if ((object instanceof OfficeBuilding) && (((OfficeBuilding) object).getFloorsNum() == this.getFloorsNum())){
@@ -217,6 +219,7 @@ public class OfficeBuilding  implements Building, Serializable, Cloneable {
         return res;
     }
 
+    @Override
     public int hashCode(){
         int result = 0;
         for (int i = 0; i < getFloorsNum(); i++){
@@ -225,6 +228,7 @@ public class OfficeBuilding  implements Building, Serializable, Cloneable {
         return result;
     }
 
+    @Override
     public Object clone(){
         Object result = null;
         Floor[] tmp = this.getFloorsArray();

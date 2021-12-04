@@ -166,6 +166,7 @@ public class Dwelling implements Building, Serializable, Cloneable {
         return arrFlats;
     }
 
+    @Override
     public String toString(){
         String str = new String("Dwelling (" + this.getFloorsNum()+ ",");
         for (int i = 0; i < this.getFloorsNum(); i++){
@@ -175,6 +176,7 @@ public class Dwelling implements Building, Serializable, Cloneable {
         return str;
     }
 
+    @Override
     public boolean equals(Object object){
         boolean res = false;
         if ((object instanceof Dwelling) && (((Dwelling) object).getFloorsNum() == this.getFloorsNum())){
@@ -188,6 +190,7 @@ public class Dwelling implements Building, Serializable, Cloneable {
         return res;
     }
 
+    @Override
     public int hashCode(){
         int result = 0;
         for(int i = 0; i < getFloorsNum(); i++){
@@ -196,6 +199,7 @@ public class Dwelling implements Building, Serializable, Cloneable {
         return result;
     }
 
+    @Override
     public Object clone(){
         Object result = null;
         try{

@@ -60,11 +60,13 @@ public class Office implements Space, Serializable, Cloneable {
         this.square = num;
     }
 
+    @Override
     public String toString(){
         String str = new String("Office (" + rooms + ", " + square + ")");
         return str;
     }
 
+    @Override
     public boolean equals(Object object){
         if ((object instanceof Office) && (((Office) object).rooms == this.rooms) && (((Office) object).square == this.square)) {
             return true;
@@ -72,6 +74,7 @@ public class Office implements Space, Serializable, Cloneable {
         return false;
     }
 
+    @Override
     public int hashCode(){
         int result;
         byte [] b = ByteBuffer.allocate(8).putDouble(square).array();
@@ -81,6 +84,7 @@ public class Office implements Space, Serializable, Cloneable {
         return result;
     }
 
+    @Override
     public Object clone(){
         Object result = null;
         try{
