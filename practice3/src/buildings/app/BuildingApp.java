@@ -69,10 +69,10 @@ public class BuildingApp {
 
         for (UIManager.LookAndFeelInfo lookAndFeelInfo : UIManager.getInstalledLookAndFeels()) {
             JRadioButtonMenuItem item = new JRadioButtonMenuItem(lookAndFeelInfo.getName());
-
             item.addActionListener(click -> {
                 try {
                     UIManager.setLookAndFeel(lookAndFeelInfo.getClassName());
+                    SwingUtilities.updateComponentTreeUI(mainFrame.getContentPane());
                     root.repaint();
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
                     e.printStackTrace();
