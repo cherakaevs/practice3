@@ -97,6 +97,16 @@ public class OfficeFloor implements Floor, Serializable, Cloneable {
         return tmp;
     }
 
+   /* public Space getBestSpace(){
+        Space tmp = new Office();
+        Space[] array = getSpacesArray();
+        for (Space office : array){
+            if (tmp.getSquare() < office.getSquare())
+                tmp = office;
+        }
+        return tmp;
+    }*/
+
     @Override
     public String toString(){
         String str = new String("OfficeFloor (" + getSpacesNum() +",");
