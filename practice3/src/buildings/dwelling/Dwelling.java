@@ -35,7 +35,7 @@ public class Dwelling implements Building, Serializable, Cloneable {
         int square = 0;
         for (int i = 0; i < dwelling.length; i++){
             for (int j = 0; j < dwelling[i].getSpacesNum(); j++){
-                square += dwelling[i].getSumSquare();
+                square += dwelling[i].getSquare();
             }
         }
         return square;

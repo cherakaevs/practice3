@@ -430,7 +430,7 @@ public class Buildings {
         }
     }
 
-    public static <T extends Comparator<T>> void sortComparator(T[] arr, Comparator<T> comparator){
+    public static <T> void sortComparator(T[] arr, Comparator<T> comparator){
         for (int i = 0; i < arr.length; i++){
             for (int j = 0; j < arr.length - i - 1; j++){
                 if (comparator.compare(arr[j],arr[j+1]) > 0){
@@ -441,6 +441,8 @@ public class Buildings {
             }
         }
     }
+
+
 
     public static Floor synchronizedFloor(Floor floor){
         return new SynchonizedFloor(floor);

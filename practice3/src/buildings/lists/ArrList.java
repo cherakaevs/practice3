@@ -4,8 +4,9 @@ import buildings.office.Office;
 import buildings.Space;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
-public class ArrList implements Serializable, Cloneable {
+public class ArrList implements Serializable, Cloneable, Iterable<ArrListNode> {
     private ArrListNode head;
     private ArrListNode tail;
     private int size;
@@ -142,6 +143,25 @@ public class ArrList implements Serializable, Cloneable {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public Iterator<ArrListNode> iterator() {
+        Iterator<ArrListNode> iterator = new Iterator<ArrListNode>() {
+            private int index = 0;
+            @Override
+            public boolean hasNext() {
+                if (index < length())
+                    return true;
+                return false;
+            }
+
+            @Override
+            public ArrListNode next() {
+                return getNode(index).next;
+            }
+        };
+        return iterator;
     }
 }
 

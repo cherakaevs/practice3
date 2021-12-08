@@ -48,7 +48,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable {
         return floor.length();
     }
 
-    public double getSumSquare(){
+    public double getSquare(){
         double square = 0;
         for (int i = 0; i < floor.length(); i++){
             square += floor.getNode(i).getSpace().getSquare();

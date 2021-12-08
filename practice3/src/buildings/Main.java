@@ -16,6 +16,7 @@ import buildings.threads.SequentalRepairer;
 import java.io.*;
 import java.io.DataOutputStream;
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.Iterator;
 
 
@@ -143,5 +144,19 @@ public class Main {
             e.printStackTrace();
         }
 */
+        OfficeBuilding test = new OfficeBuilding(4, rooms);
+        for (int i = 0; i < test.getFloorsNum(); i++)
+            test.setFloor(i, new OfficeFloor(rooms[i]));
+
+        Floor[] arr = test.getFloorsArray();
+        Space[] spaces = arr[0].getSpacesArray();
+
+        Buildings.sortComparator(spaces, (Space s1, Space s2) -> {if (s1.getSquare() > s2.getSquare()) return 1;
+                                                                    if (s1.getSquare() < s2.getSquare()) return -1;
+                                                                    return 0;});
+
+        Buildings.sortComparator(arr, (Floor f1, Floor f2) -> {if (f1.getSquare() > f2.getSquare()) return 1;
+                                                                if (f1.getSquare() < f2.getSquare()) return -1;
+                                                                 return 0;});
     }
 }

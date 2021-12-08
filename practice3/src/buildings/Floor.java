@@ -1,10 +1,8 @@
 package buildings;
 
-import java.util.Iterator;
-
-public interface Floor extends Cloneable, Iterable<Space>, Comparable<Floor>{
+public interface Floor extends Cloneable, Iterable<Space>, Comparable<Floor> {
     int getSpacesNum();
-    double getSumSquare();
+    double getSquare();
     int getRoomsNum();
     Space[] getSpacesArray();
     Space getSpace(int num);

@@ -63,7 +63,7 @@ public class OfficeBuilding  implements Building, Serializable, Cloneable {
     public double getSumSquare(){
         double square = 0;
         for (int i = 0; i < officeBuilding.length(); i++){
-            square += officeBuilding.getNode(i).floor.getSumSquare();
+            square += officeBuilding.getNode(i).floor.getSquare();
         }
         return square;
     }

@@ -156,7 +156,7 @@ public class BuildingApp {
         floorsPanel.add(new Label("Floor", 1));
         floorsPanel.add(new Label("Floor Number: " + num));
         floorsPanel.add(new Label("Spaces Number: " + floor.getSpacesNum()));
-        floorsPanel.add(new Label("General Square: " + floor.getSumSquare()));
+        floorsPanel.add(new Label("General Square: " + floor.getSquare()));
 
         floorsPanel.repaint();
         floorsPanel.revalidate();

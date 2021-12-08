@@ -9,7 +9,7 @@ public class PlacementExchanger {
     }
 
     public static boolean isChangableFloors(Floor f1, Floor f2){
-        return (f1.getSpacesNum() == f2.getSpacesNum() && f1.getSumSquare() == f2.getSumSquare());
+        return (f1.getSpacesNum() == f2.getSpacesNum() && f1.getSquare() == f2.getSquare());
     }
 
     public static void exchangeFloorRooms(Floor floor1, int index1, Floor floor2, int index2){
